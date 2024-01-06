@@ -1,9 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
 const createError = require("http-errors");
+const authRoutes = require('./routes/auth.route')
 
 require("dotenv").config();
 const app = express();
+app.use('/auth', authRoutes)
+
+app.use(morgan('dev'))
 
 app.get("/", async (req, res) => {
   res.send("hello from the server");
